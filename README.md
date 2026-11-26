@@ -22,11 +22,11 @@ export AWS_BEARER_TOKEN_BEDROCK="<your Bedrock API key>"   # same terminal as th
 streamlit run app.py
 ```
 
-The app opens at http://localhost:8501 with two tabs:
+The app opens at http://localhost:8501. Use the sidebar to switch between two views:
 
-- **Chat**: ask questions in plain English. Each answer has an **SQL queries** expander showing the SQL the model ran, and a **Show data** toggle that displays the rows it returned (capped at 100).
+- **Chat**: a ChatGPT-style conversation with the input pinned at the bottom. Replies stream in as they are written. The assistant chats normally and only queries the database when a question needs data; those answers have a **Show SQL** expander with the SQL it ran and a **Show data** toggle for the rows (capped at 100). **New chat** clears the conversation.
 - **SQL console**: run your own read-only SQL against `data/bus.db`.
 
 Example questions: "Which stop has the most boardings on weekday mornings?", "How much do rainy days change ridership?", "What share of fares are free transfers, by rider type?"
 
-The SQL connection is read-only. You can also open `data/bus.db` in any SQLite client. `agent.py` can still be imported on its own; it exposes `ask()` and `check_setup()`.
+The SQL connection is read-only. You can also open `data/bus.db` in any SQLite client. `agent.py` can still be imported on its own; it exposes `ask()`, `ask_stream()` and `check_setup()`.
